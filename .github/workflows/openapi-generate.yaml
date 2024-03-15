@@ -1,0 +1,48 @@
+on: 
+  workflow_dispatch:
+    inputs:
+      api_spec_repo:
+        description: "API spec repository"
+        required: true
+      output_repo:
+        description: "The output repository"
+        required: true
+      output_path:
+        description: "The path of the models folder"
+        required: true
+      namespace_name:
+        description: "The the C# namespace to use for the models"
+jobs:
+  generate-models:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout Repo"
+        uses: "actions/checkout@v4"
+        with:
+          repository: "${{ api_spec_repo }}"
+          path: "./spec"
+      
+      - name: "Checkout Repo"
+        uses: "actions/checkout@v4"
+        with:
+          repository: "${{ output_repo }}"
+          path: "./app"
+        
+      - name: "Setup JDK 11"
+        uses: "actions/setup-java@v1"
+        with:
+          java-version: 11
+
+      - name: "Generate .NET Model Classes"
+        run: |
+          wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.4.0/openapi-generator-cli-7.4.0.jar -O openapi-generator-cli.jar
+          java -jar .\openapi-generator-cli-7.4.0.jar generate -i petstore.yaml -g csharp -o ./out -p packageName=${{ namespace_name }}
+          
+          cp ./out/src/${{ namespace_name }}/Model/* ./app/${{ output_path }}
+          cd ${{ output_path }}
+
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add .
+          git commit -m "Generate and add models."
+          git push

@@ -36,7 +36,7 @@ jobs:
       - name: "Generate .NET Model Classes"
         run: |
           wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.4.0/openapi-generator-cli-7.4.0.jar -O openapi-generator-cli.jar
-          java -jar ./openapi-generator-cli.jar generate -i ./spec/petstore.yaml -g csharp -o ./out -p packageName=${{ github.event.inputs.namespace_name }}
+          java -jar ./openapi-generator-cli.jar generate -i ./spec/petstore.json -g csharp -o ./out -p packageName=${{ github.event.inputs.namespace_name }}
           
           cp ./out/src/${{ github.event.inputs.namespace_name }}/Model/* ./app/${{ github.event.inputs.output_path }}
           cd ${{ github.event.inputs.output_path }}

@@ -40,7 +40,7 @@ jobs:
           
           mkdir ./app/${{ github.event.inputs.output_path }}
           cp ./out/src/${{ github.event.inputs.namespace_name }}/Model/* ./app/${{ github.event.inputs.output_path }}
-          cd ${{ github.event.inputs.output_path }}
+          cd ./app
 
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'

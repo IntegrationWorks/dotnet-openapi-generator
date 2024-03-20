@@ -7,86 +7,86 @@ metadata:
   tags:
     - "recommended"
     - "dotnet"
-  spec:
-    owner: "user:guest"
-    type: "service"
-    parameters:
-    - title: "Basic required information"
-      required:
-        - "group_id"
-        - "artifact_id"
-        - "name"
-        - "description"
-        - "owner"
-      properties:
-        group_id:
-          title: "Group ID"
-          type: "string"
-          description: "Name for the maven group. eg (works.integration)"
-          ui:field: "EntityNamePicker"
-          ui:autofocus: true
-        artifact_id:
-          title: "Artifact ID"
-          type: "string"
-          description: "The artifact name. eg (myapp)"
-          ui:field: "EntityNamePicker"
-        name:
-          title: "Name"
-          type: "string"
-          description: "The artifact name. eg (MyApp)"
-          ui:field: "EntityNamePicker"
-        description:
-          title: "Description"
-          type: "string"
-          description: "Help others understand what this website is for."
-        owner:
-          title: "Owner"
-          type: "string"
-          description: "Owner of the component"
-          ui:field: "OwnerPicker"
-          ui:options:
-            allowedKinds:
-              - "Group"
-    - title: "Project information"
-      requried:
-        - "api-spec-repo"
-        - "api-spec-path"
-        - "project-repo"
-        - "project-repo-token"
-        - "project-models-path"
-        - "project-cs-namespace"
-      properties:
-        api-spec-repo:
-          title: "API Spec Repo"
-          type: "string"
-          description: "The repo which holds the API spec. eg (IntegrationWorks/OpenAPI-schema-specs)"
-          ui:field: "EntityNamePicker"
-          ui:autofocus: true
-        api-spec-path:
-          title: "API Spec Path"
-          type: "string"
-          description: "The path to the API spec in the API spec repo. eg (YAML/petstore.yaml)"
-          ui:field: "EntityNamePicker"
-        project-repo:
-          title: "Project Repo"
-          type: "string"
-          description: "The repository of the repo which holds the DotNet application. eg (IntegrationWorks/DotNetDemo)"
-          ui:field: "EntityNamePicker"
-        project-repo-token:
-          title: "Project Repo Token"
-          type: "string"
-          description: "A token for the DotNet applications repo. A PAT or application token is recommended."
-          ui:field: "Secret"
-        project-models-path:
-          title: "Project Models Path"
-          type: "string"
-          description: "The path which the generated code will be written to. eg (src/MyProject/Generated/Models)"
-          ui:field: "EntityNamePicker"
-        project-cs-namespace:
-          title: "Generated C# Namespace"
-          type: "string"
-          description: "The name of the namespace which will be used by the generator. eg (Generated)"
-          ui:field: "EntityNamePicker"
-  steps:
-  
-  
+spec:
+  owner: "user:guest"
+  type: "service"
+  parameters:
+  - title: "Basic required information"
+    required:
+      - "group_id"
+      - "artifact_id"
+      - "name"
+      - "description"
+      - "owner"
+    properties:
+      group_id:
+        title: "Group ID"
+        type: "string"
+        description: "Name for the maven group. eg (works.integration)"
+        ui:field: "EntityNamePicker"
+        ui:autofocus: true
+      artifact_id:
+        title: "Artifact ID"
+        type: "string"
+        description: "The artifact name. eg (myapp)"
+        ui:field: "EntityNamePicker"
+      name:
+        title: "Name"
+        type: "string"
+        description: "The artifact name. eg (MyApp)"
+        ui:field: "EntityNamePicker"
+      description:
+        title: "Description"
+        type: "string"
+        description: "Help others understand what this website is for."
+      owner:
+        title: "Owner"
+        type: "string"
+        description: "Owner of the component"
+        ui:field: "OwnerPicker"
+        ui:options:
+          allowedKinds:
+            - "Group"
+  - title: "Project information"
+    requried:
+      - "api-spec-repo"
+      - "api-spec-path"
+      - "project-repo"
+      - "project-repo-token"
+      - "project-models-path"
+      - "project-cs-namespace"
+    properties:
+      api-spec-repo:
+        title: "API Spec Repo"
+        type: "string"
+        description: "The repo which holds the API spec. eg (IntegrationWorks/OpenAPI-schema-specs)"
+        ui:field: "EntityNamePicker"
+        ui:autofocus: true
+      api-spec-path:
+        title: "API Spec Path"
+        type: "string"
+        description: "The path to the API spec in the API spec repo. eg (YAML/petstore.yaml)"
+        ui:field: "EntityNamePicker"
+      project-repo:
+        title: "Project Repo"
+        type: "string"
+        description: "The repository of the repo which holds the DotNet application. eg (IntegrationWorks/DotNetDemo)"
+        ui:field: "EntityNamePicker"
+      project-repo-token:
+        title: "Project Repo Token"
+        type: "string"
+        description: "A token for the DotNet applications repo. A PAT or application token is recommended."
+        ui:field: "Secret"
+      project-models-path:
+        title: "Project Models Path"
+        type: "string"
+        description: "The path which the generated code will be written to. eg (src/MyProject/Generated/Models)"
+        ui:field: "EntityNamePicker"
+      project-cs-namespace:
+        title: "Generated C# Namespace"
+        type: "string"
+        description: "The name of the namespace which will be used by the generator. eg (Generated)"
+        ui:field: "EntityNamePicker"
+steps:
+
+

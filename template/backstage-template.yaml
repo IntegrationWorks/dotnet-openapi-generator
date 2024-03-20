@@ -87,7 +87,6 @@ metadata:
           type: "string"
           description: "The name of the namespace which will be used by the generator. eg (Generated)"
           ui:field: "EntityNamePicker"
-
-steps:
+  steps:
   
   

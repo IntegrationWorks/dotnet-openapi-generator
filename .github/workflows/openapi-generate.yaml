@@ -32,7 +32,7 @@ jobs:
         with:
           repository: "${{ github.event.inputs.output_repo }}"
           path: "./app"
-          token: "{{ secrets.output_access_token }}"
+          token: "${{ secrets.output_access_token }}"
         
       - name: "Setup JDK 11"
         uses: "actions/setup-java@v1"

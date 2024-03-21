@@ -13,23 +13,10 @@ spec:
   parameters:
   - title: "Basic required information"
     required:
-      - "group_id"
-      - "artifact_id"
       - "name"
       - "description"
       - "owner"
     properties:
-      group_id:
-        title: "Group ID"
-        type: "string"
-        description: "Name for the maven group. eg (works.integration)"
-        ui:field: "EntityNamePicker"
-        ui:autofocus: true
-      artifact_id:
-        title: "Artifact ID"
-        type: "string"
-        description: "The artifact name. eg (myapp)"
-        ui:field: "EntityNamePicker"
       name:
         title: "Name"
         type: "string"

@@ -52,7 +52,7 @@ spec:
         ui:field: "RepoUrlPicker"
         ui:options: 
           requestUserCredentials:
-            secretsKey: USER_OAUTH_TOKEN
+            secretsKey: SPEC_OAUTH_TOKEN
             additionalScopes:
               github:
                 - "workflow"
@@ -70,17 +70,12 @@ spec:
         ui:field: "RepoUrlPicker"
         ui:options: 
           requestUserCredentials:
-            secretsKey: USER_OAUTH_TOKEN
+            secretsKey: TARGET_OAUTH_TOKEN
             additionalScopes:
               github:
                 - "workflow"
           allowedHosts:
             - "github.com"
-      target-repo-token:
-        title: "Target Repository Token"
-        type: "string"
-        description: "A token for the DotNet applications repo. A PAT or application token is recommended."
-        ui:field: "Secret"
       target-models-path:
         title: "Target Models Path"
         type: "string"
@@ -89,15 +84,18 @@ spec:
       target-cs-namespace:
         title: "Generated C# Namespace"
         type: "string"
-        description: "The name of the namespace which will be used by the generator. eg (MyProject.Models)"
+        description: "The name of the namespace which will be used by the generator. eg (MyProject.Generated.Models)"
         ui:field: "EntityNamePicker"
   steps:
-    - id: "fetch-ex"
-      name: "Fetch Example"
-      action: "fetch:template"
+    - action: "github:actions:dispatch"
+      name: "Run Generate Code GitHub Action"
       input:
-        url: "./template"
-        values:
-          name: "${{ parameters.name }}"
-          owner: "${{ parameters.owner }}"
-
+        repoUrl: "https://github.com/IntegrationWorks/dotnet-openapi-generator"
+        workflowId: "openapi-generate.yaml"
+        branchOrTagName: "main"
+        workflowInputs:
+          api_spec_repo: "${{ parameters.api-spec-repo }}"
+          api_spec_path: "${{ parameters.api-spec-path }}"
+          target_repo: "${{ parameters.target-repo }}"
+          target_path: "${{ parameters.target-models-path }}"
+          namespace_name: "${{ parameters.target-cs-namespace }}"

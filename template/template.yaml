@@ -62,7 +62,6 @@ spec:
         title: "API Spec Path"
         type: "string"
         description: "The path to the API spec in the API spec repo. eg (YAML/petstore.yaml)"
-        ui:field: "EntityNamePicker"
       target-repo:
         title: "Target Git Repository"
         type: "string"
@@ -80,7 +79,6 @@ spec:
         title: "Target Models Path"
         type: "string"
         description: "The path which the generated code will be written to. eg (src/MyProject/Generated/Models)"
-        ui:field: "EntityNamePicker"
       target-cs-namespace:
         title: "Generated C# Namespace"
         type: "string"

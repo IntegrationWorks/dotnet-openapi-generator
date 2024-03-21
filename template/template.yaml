@@ -47,14 +47,14 @@ spec:
         ui:options:
           allowedKinds:
             - "Group"
-  - title: "Project information"
+  - title: "Repository info"
     requried:
       - "api-spec-repo"
       - "api-spec-path"
-      - "project-repo"
-      - "project-repo-token"
-      - "project-models-path"
-      - "project-cs-namespace"
+      - "target-repo"
+      - "target-repo-token"
+      - "target-models-path"
+      - "target-cs-namespace"
     properties:
       api-spec-repo:
         title: "API Spec Repo"
@@ -67,25 +67,25 @@ spec:
         type: "string"
         description: "The path to the API spec in the API spec repo. eg (YAML/petstore.yaml)"
         ui:field: "EntityNamePicker"
-      project-repo:
-        title: "Project Repo"
+      target-repo:
+        title: "Target Git Repository"
         type: "string"
         description: "The repository of the repo which holds the DotNet application. eg (IntegrationWorks/DotNetDemo)"
         ui:field: "EntityNamePicker"
-      project-repo-token:
-        title: "Project Repo Token"
+      target-repo-token:
+        title: "Target Repository Token"
         type: "string"
         description: "A token for the DotNet applications repo. A PAT or application token is recommended."
         ui:field: "Secret"
-      project-models-path:
-        title: "Project Models Path"
+      target-models-path:
+        title: "Target Models Path"
         type: "string"
         description: "The path which the generated code will be written to. eg (src/MyProject/Generated/Models)"
         ui:field: "EntityNamePicker"
-      project-cs-namespace:
+      target-cs-namespace:
         title: "Generated C# Namespace"
         type: "string"
-        description: "The name of the namespace which will be used by the generator. eg (Generated)"
+        description: "The name of the namespace which will be used by the generator. eg (MyProject.Models)"
         ui:field: "EntityNamePicker"
   steps:
     - id: "fetch-ex"

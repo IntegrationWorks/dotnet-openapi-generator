@@ -49,8 +49,15 @@ spec:
         title: "API Spec Repo"
         type: "string"
         description: "The repo which holds the API spec. eg (IntegrationWorks/OpenAPI-schema-specs)"
-        ui:field: "EntityNamePicker"
-        ui:autofocus: true
+        ui:field: "RepoUrlPicker"
+        ui:options: 
+          requestUserCredentials:
+            secretsKey: USER_OAUTH_TOKEN
+            additionalScopes:
+              github:
+                - "workflow"
+          allowedHosts:
+            - "github.com"
       api-spec-path:
         title: "API Spec Path"
         type: "string"
@@ -60,7 +67,15 @@ spec:
         title: "Target Git Repository"
         type: "string"
         description: "The repository of the repo which holds the DotNet application. eg (IntegrationWorks/DotNetDemo)"
-        ui:field: "EntityNamePicker"
+        ui:field: "RepoUrlPicker"
+        ui:options: 
+          requestUserCredentials:
+            secretsKey: USER_OAUTH_TOKEN
+            additionalScopes:
+              github:
+                - "workflow"
+          allowedHosts:
+            - "github.com"
       target-repo-token:
         title: "Target Repository Token"
         type: "string"

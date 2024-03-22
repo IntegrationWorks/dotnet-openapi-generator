@@ -8,7 +8,7 @@ metadata:
     - "recommended"
     - "dotnet"
   annotations:
-    github.com/project-slug: "/IntegrationWorks/dotnet-openapi-generator"
+    github.com/project-slug: "IntegrationWorks/dotnet-openapi-generator"
 spec:
   owner: "user:guest"
   type: "service"

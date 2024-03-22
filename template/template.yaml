@@ -91,6 +91,7 @@ spec:
         repoUrl: "github.com/IntegrationWorks/dotnet-openapi-generator"
         workflowId: "openapi-generate.yaml"
         branchOrTagName: "main"
+        token: '{{ secrets.SPEC_OAUTH_TOKEN }}'
         workflowInputs:
           api_spec_repo: "${{ parameters.api-spec-repo }}"
           api_spec_path: "${{ parameters.api-spec-path }}"

@@ -88,7 +88,8 @@ spec:
     - action: "github:actions:dispatch"
       name: "Run Generate Code GitHub Action"
       input:
-        repoUrl: "github.com/IntegrationWorks/dotnet-openapi-generator"
+        repoUrl: "github.com?reponame=IntegrationWorks/dotnet-openapi-generator"
+        # repoUrl: "github.com/IntegrationWorks/dotnet-openapi-generator"
         workflowId: "openapi-generate.yaml"
         branchOrTagName: "main"
         token: ${{ secrets.USER_OAUTH_TOKEN }}

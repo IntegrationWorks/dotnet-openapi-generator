@@ -15,10 +15,10 @@ on:
         required: true
       namespace_name:
         description: "The the C# namespace to use for the models"
-    # secrets:
-    #   output_access_token:
-    #     description: "A token with read/write permissions for the output repository"
-    #     required: true
+    secrets:
+      iw_github_container_token:
+        description: "A token with read/write permissions for the output repository"
+        required: true
 
 jobs:
   generate-models:
@@ -29,13 +29,14 @@ jobs:
         with:
           repository: "${{ github.event.inputs.api_spec_repo }}"
           path: "./spec"
+          token: "${{ secrets.iw_github_container_token }}"
       
       - name: "Checkout Repo"
         uses: "actions/checkout@v4"
         with:
           repository: "${{ github.event.inputs.target_repo }}"
           path: "./app"
-          # token: "${{ secrets.output_access_token }}"
+          token: "${{ secrets.iw_github_container_token }}"
         
       - name: "Setup JDK 11"
         uses: "actions/setup-java@v1"

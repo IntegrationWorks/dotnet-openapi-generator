@@ -2,7 +2,7 @@ apiVersion: "scaffolder.backstage.io/v1beta3"
 kind: "Template"
 metadata:
   name: "dotnet-openapi-model-generator"
-  title: "DotNet OpenAPI Model Generator"
+  title: "Dot Net - OpenAPI Model Generator"
   description: "Generates C# models for a given OpenAPI spec."
   tags:
     - "recommended"

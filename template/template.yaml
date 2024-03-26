@@ -15,29 +15,29 @@ spec:
   parameters:
   - title: "Repository info"
     requried:
-      - "api-spec-repo"
-      - "api-spec-path"
-      - "target-repo"
-      - "target-models-path"
-      - "target-cs-namespace"
+      - "apiSpecRepo"
+      - "apiSpecPath"
+      - "targetRepo"
+      - "targetModelsPath"
+      - "targetCsNamespace"
     properties:
-      api-spec-repo:
+      apiSpecRepo:
         title: "API Spec Repo"
         type: "string"
         description: "The repo which holds the API spec. eg (IntegrationWorks/OpenAPI-schema-specs)"
-      api-spec-path:
+      apiSpecPath:
         title: "API Spec Path"
         type: "string"
         description: "The path to the API spec in the API spec repo. eg (yaml-schema/petstore.yaml)"
-      target-repo:
+      targetRepo:
         title: "Target Git Repository"
         type: "string"
         description: "The repository of the repo which holds the DotNet application. eg (IntegrationWorks/DotNetDemo)"
-      target-models-path:
+      targetModelsPath:
         title: "Target Models Path"
         type: "string"
         description: "The path which the generated code will be written to. eg (src/MyProject/Generated/Models)"
-      target-cs-namespace:
+      targetCsNamespace:
         title: "Generated C# Namespace"
         type: "string"
         description: "The name of the namespace which will be used by the generator. eg (MyProject.Generated.Models)"
@@ -51,13 +51,8 @@ spec:
         branchOrTagName: "main"
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         workflowInputs:
-          # api_spec_repo: "${{ parameters.api-spec-repo }}"
-          # api_spec_path: "${{ parameters.api-spec-path }}"
-          # target_repo: "${{ parameters.target-repo }}"
-          # target_path: "${{ parameters.target-models-path }}"
-          # namespace_name: "${{ parameters.target-cs-namespace }}"
-          api_spec_repo: "IntegrationWorks/OpenAPI-schema-specs"
-          api_spec_path: "yaml-schema/petstore.yaml"
-          target_repo: "IntegrationWorks/dotnet-gen-demo"
-          target_path: "src/Generated"
-          namespace_name: "Models.Generated"
+          api_spec_repo: "${{ parameters.apiSpecRepo }}"
+          api_spec_path: "${{ parameters.apiSpecPath } }}"
+          target_repo: "${{ parameters.targetRepo }}"
+          target_path: "${{ parameters.targetModelsPath }}"
+          namespace_name: "${{ parameters.targetCsNamespace }}"

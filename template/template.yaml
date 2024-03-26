@@ -52,7 +52,7 @@ spec:
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         workflowInputs:
           api_spec_repo: "${{ parameters.apiSpecRepo }}"
-          api_spec_path: "${{ parameters.apiSpecPath } }}"
+          api_spec_path: "${{ parameters.apiSpecPath }}"
           target_repo: "${{ parameters.targetRepo }}"
           target_path: "${{ parameters.targetModelsPath }}"
           namespace_name: "${{ parameters.targetCsNamespace }}"

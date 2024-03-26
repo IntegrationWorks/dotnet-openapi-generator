@@ -13,35 +13,11 @@ spec:
   owner: "user:guest"
   type: "service"
   parameters:
-  - title: "Basic required information"
-    required:
-      - "name"
-      - "description"
-      - "owner"
-    properties:
-      name:
-        title: "Name"
-        type: "string"
-        description: "The artifact name. eg (MyApp)"
-        ui:field: "EntityNamePicker"
-      description:
-        title: "Description"
-        type: "string"
-        description: "Help others understand what this website is for."
-      owner:
-        title: "Owner"
-        type: "string"
-        description: "Owner of the component"
-        ui:field: "OwnerPicker"
-        ui:options:
-          allowedKinds:
-            - "Group"
   - title: "Repository info"
     requried:
       - "api-spec-repo"
       - "api-spec-path"
       - "target-repo"
-      - "target-repo-token"
       - "target-models-path"
       - "target-cs-namespace"
     properties:
@@ -49,15 +25,6 @@ spec:
         title: "API Spec Repo"
         type: "string"
         description: "The repo which holds the API spec. eg (IntegrationWorks/OpenAPI-schema-specs)"
-        ui:field: "RepoUrlPicker"
-        ui:options: 
-          requestUserCredentials:
-            secretsKey: SPEC_OAUTH_TOKEN
-            additionalScopes:
-              github:
-                - "workflow"
-          allowedHosts:
-            - "github.com"
       api-spec-path:
         title: "API Spec Path"
         type: "string"
@@ -66,15 +33,6 @@ spec:
         title: "Target Git Repository"
         type: "string"
         description: "The repository of the repo which holds the DotNet application. eg (IntegrationWorks/DotNetDemo)"
-        ui:field: "RepoUrlPicker"
-        ui:options: 
-          requestUserCredentials:
-            secretsKey: TARGET_OAUTH_TOKEN
-            additionalScopes:
-              github:
-                - "workflow"
-          allowedHosts:
-            - "github.com"
       target-models-path:
         title: "Target Models Path"
         type: "string"
@@ -89,7 +47,6 @@ spec:
       name: "Run Generate Code GitHub Action"
       input:
         repoUrl: "github.com?repo=dotnet-openapi-generator&owner=IntegrationWorks"
-        # repoUrl: "github.com/IntegrationWorks/dotnet-openapi-generator"
         workflowId: "openapi-generate.yaml"
         branchOrTagName: "main"
         token: ${{ secrets.USER_OAUTH_TOKEN }}

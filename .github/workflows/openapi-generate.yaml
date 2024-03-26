@@ -48,7 +48,7 @@ jobs:
           wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.4.0/openapi-generator-cli-7.4.0.jar -O openapi-generator-cli.jar
           java -jar ./openapi-generator-cli.jar generate -i ./spec/${{ github.event.inputs.api_spec_path }} -g csharp -o ./out -p packageName=${{ github.event.inputs.namespace_name }}
           
-          mkdir -p ./app/${{ github.event.inputs.target_path }}
+          mkdir -p ./app/${{ github.event.inputs.target_path }}/Model
           cp ./out/src/${{ github.event.inputs.namespace_name }}/Model/* ./app/${{ github.event.inputs.target_path }}/Model
           cd ./app
 

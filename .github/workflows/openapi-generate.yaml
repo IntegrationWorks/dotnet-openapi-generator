@@ -7,16 +7,18 @@ on:
       api_spec_path:
         description: "The path to the api spec"
         required: true
-      target_repo:
+      output_repo:
         description: "The output repository"
         required: true
-      target_model_path:
+      output_model_path:
         description: "The path of the models folder"
         required: true
-      namespace_name:
-        description: "The C# namespace of the models folder"
-      models_name:
-        description: "The remaining part of the C# namespace after the models folder"
+      namespace_root_name:
+        description: "The C# namespace up to the models folder"
+        required: true
+      namespace_models_name:
+        description: "The remaining part of the C# namespace including the models folder"
+        required: true
     secrets:
       iw_github_container_token:
         description: "A token with read/write permissions for the output repository"
@@ -36,7 +38,7 @@ jobs:
       - name: "Checkout Repo"
         uses: "actions/checkout@v4"
         with:
-          repository: "${{ github.event.inputs.target_repo }}"
+          repository: "${{ github.event.inputs.output_repo }}"
           path: "./app"
           token: "${{ secrets.iw_github_container_token }}"
         
@@ -53,12 +55,12 @@ jobs:
                -i ./spec/${{ github.event.inputs.api_spec_path }} \
                -g csharp \
                -o ./out \
-               -p packageName=${{ github.event.inputs.namespace_name }} \
-               -p modelPackage=${{ github.event.inputs.models_name }} \
+               -p packageName=${{ github.event.inputs.namespace_root_name }} \
+               -p modelPackage=${{ github.event.inputs.namespace_models_name }} \
                --global-property models
           
-          mkdir -p ./app/${{ github.event.inputs.target_model_path }}/  
-          cp -r ./out/src/${{ github.event.inputs.namespace_name }}/* \ 
+          mkdir -p ./app/${{ github.event.inputs.output_model_path }}/  
+          cp -r ./out/src/${{ github.event.inputs.namespace_name }}/${{ github.event.inputs.namespace_models_name }}* \ 
              ./app/${{ github.event.inputs.target_model_path }}/*
           cd ./app
 

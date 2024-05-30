@@ -10,11 +10,13 @@ on:
       target_repo:
         description: "The output repository"
         required: true
-      target_path:
+      target_model_path:
         description: "The path of the models folder"
         required: true
       namespace_name:
-        description: "The the C# namespace to use for the models"
+        description: "The C# namespace of the models folder"
+      models_name:
+        description: "The remaining part of the C# namespace after the models folder"
     secrets:
       iw_github_container_token:
         description: "A token with read/write permissions for the output repository"
@@ -46,11 +48,18 @@ jobs:
 
       - name: "Generate .NET Model Classes"
         run: |
-          wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.4.0/openapi-generator-cli-7.4.0.jar -O openapi-generator-cli.jar
-          java -jar ./openapi-generator-cli.jar generate -i ./spec/${{ github.event.inputs.api_spec_path }} -g csharp -o ./out -p packageName=${{ github.event.inputs.namespace_name }}
+          wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.6.0/openapi-generator-cli-7.6.0.jar -O openapi-generator-cli.jar
+          java -jar ./openapi-generator-cli.jar generate \
+               -i ./spec/${{ github.event.inputs.api_spec_path }} \
+               -g csharp \
+               -o ./out \
+               -p packageName=${{ github.event.inputs.namespace_name }} \
+               -p modelPackage=${{ github.event.inputs.models_name }} \
+               --global-property models
           
-          mkdir -p ./app/${{ github.event.inputs.target_path }}/Model
-          cp ./out/src/${{ github.event.inputs.namespace_name }}/Model/* ./app/${{ github.event.inputs.target_path }}/Model
+          mkdir -p ./app/${{ github.event.inputs.target_model_path }}/  
+          cp ./out/src/${{ github.event.inputs.namespace_name }}/* \ 
+             ./app/${{ github.event.inputs.target_model_path }}/*
           cd ./app
 
           git config --global user.name 'GitHub Action'

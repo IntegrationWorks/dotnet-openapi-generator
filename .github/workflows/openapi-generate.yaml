@@ -60,8 +60,7 @@ jobs:
                --global-property models
           
           mkdir -p ./app/${{ github.event.inputs.output_model_path }}/  
-          cp ./out/src/${{ github.event.inputs.namespace_root_name }}/${{ github.event.inputs.namespace_models_name }}/* \ 
-             ./app/${{ github.event.inputs.output_model_path }}/
+          cp ./out/src/${{ github.event.inputs.namespace_root_name }}/${{ github.event.inputs.namespace_models_name }}/* ./app/${{ github.event.inputs.output_model_path }}/
           cd ./app
 
           git config --global user.name 'GitHub Action'
